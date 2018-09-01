@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { string, bool, func, obj, any, number } from "prop-types";
-
+import React, { Component } from 'react';
+import { string, bool, func, obj, any, number } from 'prop-types';
 
 class PropsComponents extends Component {
 	static propTypes = {
