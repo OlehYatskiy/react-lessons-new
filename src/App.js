@@ -6,15 +6,14 @@ import ComponentWithStateInConstructor from "./component/root/ComponentWithState
 import ComponentWithOUtStateInConstructor from "./component/root/ComponentWithOUtStateInConstructor";
 import PropsComponents from "./component/PropsComponents/PropsComponents";
 import StateComponent from "./component/stateComponent/StateComponent";
+import ParentComponent from './component/realtiveComponents/ParentComponent';
 
 class App extends Component {
   render() {
 
     return (
       <div className="App">
-		  <ComponentWithStateInConstructor />
-		  <ComponentWithOUtStateInConstructor />
-		  <StateComponent />
+		    <ParentComponent />
       </div>
     );
   }

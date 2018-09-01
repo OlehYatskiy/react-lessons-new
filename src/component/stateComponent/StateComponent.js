@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { string, bool, func, obj, any, number } from "prop-types";
 
 import PropsComponents from "../PropsComponents/PropsComponents"
 
 
 class StateComponent extends Component {
-	state = {
+  state = {
 		inputText: ""
 	};
 
@@ -33,4 +33,4 @@ class StateComponent extends Component {
 	}
 }
 
-export default StateComponent
+export default StateComponent;
