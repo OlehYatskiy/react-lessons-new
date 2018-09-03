@@ -2,70 +2,74 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ReactDOM from "react-dom";
+import ClassContainer from './components/classContainer';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.textInputSmartInputCreating = React.createRef();
-
-		this.text = "";
-		// create a ref to store the textInput DOM element
-		//this.textInputSmartInput = 5;
-	}
+class App extends Component {
 
 	state = {
-		text: ""
+		divClass: 'default',
 	}
 
 	componentDidMount() {
-		this.refs.textInputSmartInput.value = 15;
-		this.refs.textInputSmartInput.focus();
-
-		this.setState({
-			text:  this.refs.textInputSmartInput.value
-		});
-
-		this.textInputSmartInputCreating.current.value = "Reaf save on constructor";
+		//this.refs.reFofInputText.value = this.refs.reFofInputText.className;
+		// const classNamecontainer = ReactDOM.findDOMNode(this.classNamecontainer);
+		// classNamecontainer.className = 'default';
 	}
 
-	focusTextInput = () => {
-
-		console.log(this.refs);
-
-		this.setState({
-			text:  this.refs.textInputSmartInput.value
-		});
-		// Explicitly focus the text input using the raw DOM API
-		// // Note: we're accessing "current" to get the DOM node
-		// console.log(this.refs);
-		// this.refs.textInput.focus();
-
-		this.textInputSmartInputCreating.current.value = this.refs.textInputSmartInput.value;
+	classNameOutput = () => {
+		console.log('className:', this.reFofInputText.className);
+		//this.refs.reFofInputText.value = this.refs.reFofInputText.className;
 	}
+
+	PaintItRed = () => {
+		this.setState({
+			divClass: 'Red'
+		})
+		this.classNameOutput();
+	}
+
+	PaintItBlack = () => {
+		this.reFofInputText.className = 'Black';
+		setTimeout(
+			this.setState({
+				divClass: this.reFofInputText.className
+			}), 2000
+		);
+		this.classNameOutput();
+	}
+
+
 
 	render() {
-		// tell React that we want to associate the <input> ref
-		// with the `textInput` that we created in the constructor
-		//console.log(this.textInputSmartInput);
+		let { divClass } = this.state;
+
 		return (
 			<div>
 				<input
-					type="text"
-					onChange={this.focusTextInput}
-					ref={"textInputSmartInput"} />
+					className={divClass}
+					ref={(node) => { this.reFofInputText = node; }}
+					type='text'
 
-				<input
-					type="text"
-					onChange={this.focusTextInput}
-					ref={this.textInputSmartInputCreating} />
+					/>
+				<button
+					onClick={this.PaintItRed} >
 
-				<input type="text" value={this.state.text} />
-				<input
-					type="button"
-					value="Focus the text input"
-					onClick={this.focusTextInput}
-				/>
+					Paint it red
+				</button>
+	      <button
+					onClick={this.PaintItBlack} >
+
+					Paint it black
+				</button>
+				<button
+					onClick={this.classNameOutput}>
+
+					GiveClassName
+				</button>
+				<ClassContainer className={divClass}
+					ref={(node) => { this.reFofClassContainer = node; }}
+					/>
+
 			</div>
 		);
 	}
