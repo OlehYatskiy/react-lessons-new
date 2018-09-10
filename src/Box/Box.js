@@ -3,7 +3,7 @@ import { string } from 'prop-types';
 import './Box.css';
 
 
-class Box extends React.Component {
+class Box extends Component {
 	static propTypes = {
 		propClassName: string,
 		color: string,
@@ -18,11 +18,12 @@ class Box extends React.Component {
 		const { propClassName, color, width, height } = this.props;
 		return (
 			<Fragment>
-				<div style={{
-					backgroundColor: color,
-					width: width,
-					height: height
-				}}>
+				<div className={propClassName}
+					 style={{
+						 backgroundColor: color,
+						 width: width,
+						 height: height
+					 }}>
 					{ this.props.children }
 				</div>
 			</Fragment>
