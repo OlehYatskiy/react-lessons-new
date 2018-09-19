@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, Children } from 'react';
 import { string } from 'prop-types';
 import './Box.css';
 
@@ -16,6 +16,9 @@ class Box extends Component {
 		// with the `textInput` that we created in the constructor
 		//console.log(this.textInputSmartInput);
 		const { propClassName, color, width, height } = this.props;
+		const children = Children.toArray(this.props.children);
+		const childrenCount = children.length;
+		console.log(childrenCount)
 		return (
 			<Fragment>
 				<div className={propClassName}
@@ -24,7 +27,9 @@ class Box extends Component {
 						 width: width,
 						 height: height
 					 }}>
-					{ this.props.children }
+					{ children.map((child) => {
+						return child
+					}).reverse() }
 				</div>
 			</Fragment>
 		);

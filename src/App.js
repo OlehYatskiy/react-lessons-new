@@ -7,10 +7,6 @@ import Box from "./Box/Box";
 class App extends Component {
   constructor (props) {
     super(props)
-
-    this.textInputSmartInputCreating = React.createRef();
-
-  // this.text = "";
 	}
 
 	render() {
@@ -18,11 +14,9 @@ class App extends Component {
 		return (
 			<div>
 
-				<Box propClassName={'container'} color={"black"} >
-					<Box color={"red"} width={"100px"} height={"100px"} />
-					<Box color={"blue"} width={"50px"} height={"50px"} >
-						<Box color={'yellow'} width={'25px'} height={'25px'} />
-					</Box>
+        <Box color={"red"} width={"150px"} height={"150px"}>
+					<Box color={"blue"} width={"15px"} height={"15px"} />
+					<Box color={"black"} width={"50px"} height={"50px"} />
 				</Box>
 
 			</div>
