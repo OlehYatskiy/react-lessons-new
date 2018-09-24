@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { array, string } from "prop-types";
+
 import Loader from '../Loader';
-import { array } from "prop-types";
+
 import "./index.css"
+
 class HomePageWithId extends Component {
 	static propTypes = {
-		post: array.isRequired
+		post: array.isRequired,
+		backgroundcolor: string.isRequired
 	}
 	// state = {
 	// 	jsonMass: [],
@@ -34,13 +38,24 @@ class HomePageWithId extends Component {
 	// 	console.log('Запрос отправлен ?');
 	// }
 
-	render() {
-		const { post } = this.props;
+	state = {
+		redirectToHome: false
+	}
 
+	redirectToHome = () => {
+		this.setState({redirectToHome: true})
+	}
+
+	render() {
+		const { post, backgroundcolor } = this.props;
 		const { id, title, body } = post;
 
+		console.log('backgroundcolor prop:', backgroundcolor);
+		console.log('redirectToHome state:', this.state.redirectToHome);
+		console.log('redirectToHome !state:', !this.state.redirectToHome);
+
 		return(
-			<div>
+			<Fragment>
 
 				{/*{*/}
 					{/*isLoading ?*/}
@@ -62,17 +77,22 @@ class HomePageWithId extends Component {
 						{/*})*/}
 				{/*}*/}
 
-				<div key={id} className={"post-wrapper"} >
-					<h1 >{ title }</h1>
-					<h4>{ body }</h4>
-
-					<button>
-						<Link to='/homepage'>
-							Back to homepage
-						</Link>
-					</button>
-				</div>
-			</div>
+				{
+					this.state.redirectToHome ?
+					 	<Redirect to='/homepage' />
+						:
+						<div key={id} className={"post-wrapper"} >
+							<h1 >{ title }</h1>
+							<h4>{ body }</h4>
+								<Link to='/homepage'>
+									<button>
+										Back to homepage
+									</button>
+								</Link>
+								<button onClick={this.redirectToHome} >Redirect</button>
+						</div>
+				}
+			</Fragment>
 		);
 	}
 }

@@ -27,6 +27,7 @@ class App extends Component {
 		// );
 		let result = await fetch('https://jsonplaceholder.typicode.com/posts/');
 		result = await result.json();
+
 		this.setState({
 			posts: result,
 			isLoading: false,
@@ -43,12 +44,12 @@ class App extends Component {
 					<Loader />
 					:
 					<Switch>
-						<Route exact path={"/"} component={HomePage} />
+						{/*<Route exact path={"/"} component={HomePage} />*/}
 						<Route exact path={"/homepage"} render={
 							()=><HomePage posts={posts} />
 						} />
 						<Route path={"/homepage/:id"} render={
-							(props)=><HomePageWithId {...props}  post={posts[props.match.params.id -1]} />
+							(props)=><HomePageWithId {...props}  post={posts[props.match.params.id -1]} backgroundcolor={'#444'} />
 						} />
 						<Route path={"/about"} component={About} />
 					</Switch>
