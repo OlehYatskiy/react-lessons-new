@@ -5,6 +5,8 @@ import { array, bool } from "prop-types";
 import "./index.css"
 import {connect} from "react-redux";
 import * as appActions from "../../modules/app/app.actions";
+
+
 class HomePageWithId extends Component {
 	static propTypes = {
 		posts: array.isRequired,
