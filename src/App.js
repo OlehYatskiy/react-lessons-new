@@ -24,7 +24,7 @@ class App extends Component {
 		this.props.fetchAllData();
 	}
 
-	renderLoader =() => {
+	renderLoader = () => {
 		const { loading } = this.props;
 
 		if(loading) {

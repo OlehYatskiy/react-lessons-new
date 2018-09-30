@@ -1,13 +1,78 @@
-import { createAction } from "redux-act";
 
+export const showLoader = () => {
+	return {
+		type: 'showLoader',
+		payload: true
+	};
+}
 
-export const showLoader = createAction("show loader");
-export const hideLoader = createAction("hide loader");
-export const changeLoader = createAction("change loader");
+export const hideLoader = () => {
+	return {
+		type: 'hideLoader',
+		payload: false,
+	};
+}
 
-export const fetchAllDataStart =  createAction("fetch all data start");
-export const fetchAllDataSuccess =  createAction("fetch all data success");
-export const fetchAllDataFailure =  createAction("fetch all data failure");
+export const changeLoader = (value) => {
+	return {
+		type: 'changeLoader',
+		payload: value
+	};
+}
+
+export const fetchAllDataStart = () => {
+	return {
+		type: 'fetchAllDataStart',
+		payload: 'pending'
+	};
+}
+
+export const fetchAllDataSuccess = (data) => {
+	return {
+		type: 'fetchAllDataSuccess',
+		payload: {
+			dataStatus: 'success',
+			data: data
+		}
+	};
+}
+
+export const fetchAllDataFailure = (failure) => {
+	return {
+		type: 'fetchAllDataSuccess',
+		payload: {
+			dataStatus: 'failure',
+			failureMessage: failure
+		}
+	};
+}
+
+export const fetchUserStart = () => {
+	return {
+		type: 'fetchUserStart',
+		payload: 'pending'
+	};
+}
+
+export const fetchUserSuccess = (data) => {
+	return {
+		type: 'fetchAllDataSuccess',
+		payload: {
+			dataStatus: 'success',
+			data: data
+		}
+	};
+}
+
+export const fetchUserFailure = (failure) => {
+	return {
+		type: 'fetchUser',
+		payload: {
+			dataStatus: 'failure',
+			failureMessage: failure
+		}
+	};
+}
 
 
 export const fetchAllData = () => async(dispatch, getState) => {
@@ -29,12 +94,6 @@ export const fetchAllData = () => async(dispatch, getState) => {
 		dispatch(hideLoader());
 	}
 };
-
-
-export const fetchUserStart =  createAction("fetch user start");
-export const fetchUserSuccess =  createAction("fetch user success");
-export const fetchUserFailure =  createAction("fetch user failure");
-
 
 export const fetchUser = (id) => async(dispatch, getState) => {
 	dispatch(showLoader());
