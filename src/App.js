@@ -13,7 +13,7 @@ class App extends Component {
             <div className={classes.app}>
                 <NavBar />
                 <div className={classes.appContainer}>
-                    123123123123123
+                    UserPage
                 </div>
             </div>
     );

@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
-
+import { Route, Switch, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import { FormGroup, FormControl, Glyphicon  } from "react-bootstrap";
+import { array } from 'prop-types'
+
+
 import User from "../User/User";
 import classes from './NavBar.less';
-import {apiUrl} from "../../constants/config";
+
+import * as appActions from '../../modules/app/app.actions'
 
 class NavBar extends Component {
 
-	state = {
-		usersData: []
+	static propTypes = {
+		usersData: array
 	}
 
-	componentDidMount() {
-		fetch(`${apiUrl}/getAllUsers`, {
-			method: 'post',
-		}).then((response) => {
-			return response.json();
-		}).then((data) => {
-			console.log(data);
-			this.setState({
-				usersData: data
-			})
-		});
+	componentDidMount () {
+		this.props.fetchAllData();
 	}
-
 
 	render() {
-		const { usersData } = this.state;
+		const { usersData } = this.props;
 
 		return (
 				<div className={classes.navBar}>
@@ -49,4 +44,10 @@ class NavBar extends Component {
 	}
 }
 
-export default NavBar;
+function mapStateToProps ({ state }) {
+	return {
+		usersData: state.users,
+	};
+}
+
+export default withRouter(connect(mapStateToProps, { ...appActions })(NavBar));

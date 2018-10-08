@@ -35,7 +35,12 @@
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "react-slick": "^0.23.1",
-    "react-youtube": "^7.6.0"
+    "react-youtube": "^7.6.0",
+    "redux": "^4.0.0",
+    "redux-act": "^1.7.4",
+    "redux-thunk": "^2.3.0"
   }
 }
