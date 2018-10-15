@@ -38,7 +38,7 @@ class NavBar extends Component {
 
 	onUserClick = (index) => {
 
-		debugger;
+
 		if (index !== this.state.selectedBlockId) {
 			this.props.selectUser(index);
 

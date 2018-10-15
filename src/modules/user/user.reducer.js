@@ -6,7 +6,10 @@ import * as actions from "./user.actions";
 const initialState = {
 	users:[],
 	usersGetStatus: "",
-	selectUser: null
+	selectUser: null,
+	firstName: "",
+	lastName: "",
+	avatarUrl: "",
 };
 
 const reducer = {
@@ -26,6 +29,18 @@ const reducer = {
 	[actions.unselectUser]: (state) => ({
 		...state,
 		selectUser: null
+	}),
+	[actions.addUserProperties]: (state, target) => ({
+		...state,
+		[target.name]: target.value
+	}),
+	[actions.addNewUser]: (state) => ({
+		...state,
+		usersSendStatus: "sending"
+	}),
+	[actions.addNewUserStatus]: (state) => ({
+		...state,
+		usersSendStatus: "success"
 	}),
 };
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from "react-redux";
 
-import { array, func, any } from "prop-types";
+import { string, array, func, any } from "prop-types";
 
 import { FormGroup, FormControl, InputGroup  } from "react-bootstrap";
 import classes from './UserDetails.less';
@@ -15,29 +15,27 @@ class UserDetails extends Component {
 
 	state = {
 		selectedBlockId: null,
-		firstName: "",
-		lastName: "",
-		avatarUrl: "",
 	}
 
 	static propTypes = {
+		firstName: string,
+		lastName: string,
+		avatarUrl: string,
 		usersData: array,
 		selectUserIndex: any,
-		getAllUserSaga: func
+		getAllUserSaga: func,
+		addUserProperties: func,
 	}
 
 	onInputChange = (event) => {
-		this.setState({
-			[event.target.name]: event.target.value
-		})
+		this.props.addUserProperties(event.target);
 	}
 
-	onConfirmBtnClick = async() => {
-		const { firstName, lastName, avatarUrl } = this.state;
-
-		const result = await postRequest("/getUsersDataBase",
-			{ firstName, lastName, avatarUrl }
-			);
+	onConfirmBtnClick = () => {
+		const { firstName, lastName, avatarUrl } = this.props;
+	  this.props.addNewUser({ firstName: firstName,
+			 											lastName: lastName,
+														avatarUrl: avatarUrl });
 		this.props.getAllUserSaga();
 	}
 
@@ -91,7 +89,10 @@ class UserDetails extends Component {
 function mapStateToProps({ user }) {
 	return {
 		usersData: user.users,
-		selectUserIndex: user.selectUser
+		selectUserIndex: user.selectUser,
+		firstName: user.firstName,
+		lastName: user.lastName,
+		avatarUrl: user.avatarUrl,
 	};
 }
 

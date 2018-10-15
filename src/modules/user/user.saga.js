@@ -19,10 +19,23 @@ function *getAllUser() {
 	}
 }
 
+function *addNewUser(action) {//???
+	const payload = action.payload;
+	try {
+		yield postRequest('/getUsersDataBase', payload );
+		yield userAction.addNewUserStatus();
+
+	} catch (error) {
+		if (!error) {
+			console.log(error);
+		} else {
+		}
+	}
+}
+
 
 
 export function* watchUser() {
 	yield takeEvery(userAction.getAllUserSaga, getAllUser);
+	yield takeEvery(userAction.addNewUser, addNewUser);
 }
-
-

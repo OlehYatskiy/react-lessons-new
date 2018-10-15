@@ -14,11 +14,11 @@ class App extends Component {
     render() {
         return (
             <div className={classes.app}>
-				<LoaderContainer />
-                <NavBar />
-                <div className={classes.appContainer}>
-					<UserDetails />
-                </div>
+				          <LoaderContainer />
+                    <NavBar />
+                    <div className={classes.appContainer}>
+					             <UserDetails />
+                    </div>
             </div>
     );
   }
