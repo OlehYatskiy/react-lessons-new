@@ -14,7 +14,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className={classes.app}>
+            <div className={classes.app}> 
 				          <LoaderContainer />
                     <NavBar />
                     <div className={classes.appContainer}>
