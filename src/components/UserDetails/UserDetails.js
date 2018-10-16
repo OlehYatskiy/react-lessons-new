@@ -40,7 +40,10 @@ class UserDetails extends Component {
 	}
 
 	render() {
+
 		const { usersData, selectUserIndex } = this.props;
+		//const selectUserIndex = '5bc39512670e7a356411d959';
+		console.log(selectUserIndex);
 		const selectedUserDataIndex = usersData.findIndex((user) => {
 			return user._id === selectUserIndex;
 		});

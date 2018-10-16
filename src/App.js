@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import NavBar from "./components/NavBar/NavBar";
 import UserDetails from "./components/UserDetails/UserDetails";
@@ -17,7 +18,8 @@ class App extends Component {
 				          <LoaderContainer />
                     <NavBar />
                     <div className={classes.appContainer}>
-					             <UserDetails />
+                        <Route exact path={"/:id"} component={UserDetails} />
+					             {/*<UserDetails />*/}
                     </div>
             </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import { object, number, func, any } from "prop-types";
+import { object, number, func, any, string } from "prop-types";
 import classes from './User.less';
 
 import classNames from "classnames";
@@ -9,7 +10,7 @@ class User extends Component {
 
 	static propTypes = {
 		userData: object,
-		index: number,
+		index: string,
 		onUserClick: func,
 		selectedBlockId: any
 	}
@@ -27,8 +28,9 @@ class User extends Component {
 		const userWrapperClass = classNames(classes.user, {
 			[classes.selected]: index === selectedBlockId
 		});
-
+//to={`/${firstName}${lastName}`}
 		return (
+			<Link to={index}>
 				<div onClick={this.onUserBlockClick(index)}
 					 key={index}
 					 className={userWrapperClass}>
@@ -39,6 +41,7 @@ class User extends Component {
 						{`${firstName} ${lastName}`}
 					</div>
 				</div>
+			</Link>
 		);
 	}
 }
